@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FY26 GROHE KSA Training Strategy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+        .header-bg {
+            background-color: #0077B6; /* Primary Blue */
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        .header-bg h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .header-bg p {
+            font-size: 1.125rem;
+        }
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #005A8C; /* Darker Blue */
+            border-bottom: 2px solid #FF8C00; /* Accent Orange */
+            padding-bottom: 0.5rem;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat-box {
+            background-color: #E0F7FA; /* Light Cyan for stats */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0077B6; /* Primary Blue */
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #FF8C00; /* Accent Orange */
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px; /* Adjust to center the dot on the line */
+            top: 5px; /* Adjust vertical alignment */
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #0077B6; /* Primary Blue */
+            border: 2px solid white;
+            z-index: 1;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #005A8C; /* Darker Blue */
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .timeline-content {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .kpi-item {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 350px;
+            width: 100%;
+            max-width: 700px; /* Increased max-width for better display */
+        }
+
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 250px; /* Adjusted height for smaller screens */
+            }
+            .header-bg h1 {
+                font-size: 2rem;
+            }
+            .header-bg p {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* No SVG and No Mermaid JS confirmation: 
+           This HTML file does not use SVG for graphics or Mermaid JS for diagrams. 
+           All charts are rendered using Chart.js (Canvas), and other structural 
+           elements are built with HTML and styled with Tailwind CSS.
+        */
+
+        /* Color Palette Used (Conceptual Name: "Corporate Blue & Orange"):
+           - Primary Blue: #0077B6
+           - Secondary/Lighter Blue: #00B4D8 (or derived tints)
+           - Accent Orange: #FF8C00
+           - Accent Green (for positive indicators, if needed): #4CAF50
+           - Text (Dark Gray): #333333
+           - Background (Light Gray): #F8F9FA
+           - Card Background (White): #FFFFFF
+        */
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <header class="header-bg">
+        <h1 class="text-4xl font-bold">FY26 GROHE KSA Training Strategy</h1>
+        <p class="text-xl mt-2">Driving Product Knowledge, Engagement, and Sales Excellence</p>
+        <p class="text-lg mt-1">June 2025 – April 2026</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        <section id="overview" class="mb-12">
+            <h2 class="section-title">Strategic Overview</h2>
+            <div class="card">
+                <p class="text-gray-700 mb-4">
+                    This document outlines the comprehensive training strategy for GROHE in the Kingdom of Saudi Arabia for fiscal year 2026. Our goal is to empower our partners with the knowledge and skills necessary to excel, driving both individual success and overall brand growth. This strategy focuses on a blend of in-depth product knowledge, effective sales techniques, and robust support systems, targeting approximately 1,100 to 1,200 individuals over the year.
+                </p>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Key Strategic Objectives:</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong>Enhance Product Mastery:</strong> Ensure all partners achieve comprehensive product knowledge across the entire GROHE portfolio, including all categories and new innovations such as Euroeco, Cubeo, Showerframe, and HOYB.</li>
+                    <li><strong>Accelerate New Product Adoption:</strong> Provide targeted, timely training for new product launches to drive rapid understanding and market penetration.</li>
+                    <li><strong>Strengthen Partner Engagement:</strong> Foster deeper relationships and loyalty with main dealers, other partners, and second-level dealers through valuable and consistent training.</li>
+                    <li><strong>Empower Sales & Service Teams:</strong> Equip sales and service personnel with the knowledge and skills necessary to effectively represent, sell, and support GROHE products.</li>
+                    <li><strong>Drive Performance & Accountability:</strong> Implement robust tracking and reporting mechanisms to monitor training participation, effectiveness, and impact on business objectives.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="audience" class="mb-12">
+            <h2 class="section-title">Our Audience: A Diverse Group</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Total Trainee Pool: <span class="text-blue-600">1230</span></h3>
+                    <p class="text-gray-600 mb-4">
+                        Our training program is designed to cater to a diverse range of professionals within our network, ensuring everyone has the knowledge to succeed. The distribution is as follows:
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="audienceChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Geographical Reach</h3>
+                    <p class="text-gray-600 mb-4">
+                        Training initiatives will be conducted across key locations in Saudi Arabia to ensure widespread participation and knowledge dissemination.
+                    </p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li>Riyadh</li>
+                        <li>Jeddah</li>
+                        <li>Dammam</li>
+                        <li>Hail</li>
+                        <li>Qassim</li>
+                        <li>Madinah</li>
+                        <li>Abha</li>
+                        <li>Jizan</li>
+                        <li>Al-Ahsa</li>
+                        <li>Jubail</li>
+                        <li>Tabuk</li>
+                    </ul>
+                    <p class="mt-4 text-gray-600">
+                        Specific training initiatives: Abyat (Riyadh, Jeddah, Dammam); Ebaa, Hayat, Other Partners & 2nd-Level Dealers (all listed cities); Service Providers (Riyadh & Jeddah).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="program-details" class="mb-12">
+            <h2 class="section-title">Training Program: Content & Delivery</h2>
+            <div class="grid md:grid-cols-1 gap-6">
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Core Curriculum</h3>
+                    <p class="text-gray-600 mb-4">
+                        All participants will undergo comprehensive training covering core GROHE product categories and brand values. This ensures a consistent understanding and high level of expertise across all partners.
+                    </p>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-4">
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg text-blue-600">Module 1: Brand & Bath Category</h4>
+                            <p class="text-sm text-gray-700">Includes GROHE brand philosophy, heritage, values, key bathroom collections, innovative technologies, and design principles, and segmentation.</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg text-blue-600">Module 2: Showers & Websites Categories</h4>
+                            <p class="text-sm text-gray-700">Focuses on advanced shower systems, SmartControl, Rainshower technologies, and effective utilization of the GROHE website and digital resources.</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg text-blue-600">Module 3: Flushing, Ceramics & Kitchen Solutions</h4>
+                            <p class="text-sm text-gray-700">Covers flushing systems, toilets, bidet solutions, ceramic collections, and the full range of kitchen faucets, sinks, and water systems (e.g., GROHE Blue, Red).</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg text-blue-600">Module 4: G4+ & SPA for Projects (New Partners Focus)</h4>
+                            <p class="text-sm text-gray-700">In-depth focus on G4+ systems and specific SPA Category tailored for project-based partners and new collaborations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">New Product Focus (Launches starting October 2025)</h3>
+                    <p class="text-gray-600 mb-4">
+                        Dedicated training modules will be provided for all new product launches to ensure our partners are fully equipped to promote and support these innovations.
+                    </p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li><strong>Euroeco:</strong> Features, benefits, sales arguments.</li>
+                        <li><strong>Cubeo:</strong> Design, functionality, market positioning.</li>
+                        <li><strong>Showerframe:</strong> Unique selling points, application, installation.</li>
+                        <li><strong>HOYB:</strong> Key features, benefits, and market strategy.</li>
+                        <li><strong>Additional Launches (Dec 2025 - Mar 2026):</strong> Tailored training as new products are introduced.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Delivery Methodology</h3>
+                    <p class="text-gray-600 mb-2"><strong class="text-blue-600">In-Person Workshops:</strong> Interactive, hands-on sessions in key locations, fostering direct engagement and practical learning. Each group attends 3 core module sessions (1 hour each), plus new product training.</p>
+                    <p class="text-gray-600 mb-2"><strong class="text-blue-600">Online Backup Sessions:</strong> Monthly virtual sessions for reinforcement, updates, and accessibility for those unable to attend in-person.</p>
+                    <p class="text-gray-600"><strong class="text-blue-600">Product Launch:</strong> Targeted, high-impact sessions immediately following new product introductions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pipeline" class="mb-12">
+            <h2 class="section-title">FY26 Training Pipeline & Projected Trainee Numbers</h2>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p class="timeline-date">June 2025</p>
+                        <div class="timeline-content">
+                            <p class="font-semibold">Abyat New team preperation Training (Round 2) In addetion to covering other partners preperation on G4+ (L&L sessions)</p>
+                            <p class="text-sm text-gray-600">Comprehensive training for Abyat staff. Focus on full product portfolio. Expected Trainees: <span class="font-bold">115</span></p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-date">July 2025</p>
+                        <div class="timeline-content">
+                            <p class="font-semibold">Ongoing Training Development & Initial Engagements</p>
+                            <p class="text-sm text-gray-600">Focus on core curriculum refinement and initial regional outreach. Expected Trainees: <span class="font-bold">105</span></p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-date">August 2025</p>
+                        <div class="timeline-content">
+                            <p class="font-semibold">Continued Training Rollout & Preparation (L&L sessions)</p>
+                            <p class="text-sm text-gray-600">Continuation of core module training and preparation for new product launches. Expected Trainees: <span class="font-bold">90</span></p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-date">September 2025</p>
+                        <div class="timeline-content">
+                            <p class="font-semibold">Pre-Launch & Round 1 KSA including remote cities</p>
+                            <p class="text-sm text-gray-600">Final preparations for new product training and the start of full regional coverage. Expected Trainees: <span class="font-bold">110</span></p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-date">October - November 2025</p>
+                        <div class="timeline-content">
+                            <p class="font-semibold">New Product Launches (Euroeco, Cubeo, Showerframe) & Round 1 Regional Training</p>
+                            <p class="text-sm text-gray-600">Intensive training on new products alongside the first full round of core category training. Expected Trainees: <span class="font-bold">195</span> (Oct: 140, Nov: 55).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-date">December 2025 - March 2026</p>
+                        <div class="timeline-content">
+                            <p class="font-semibold">Additional New Launches & Round 2 Regional Training</p>
+                            <p class="text-sm text-gray-600">Training for subsequent product introductions and the second round of comprehensive core category training, including reinforcement and advanced topics. Expected Trainees: <span class="font-bold">475</span> (Dec: 120, Jan: 105, Feb: 115, Mar: 135).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-date">April 2026</p>
+                        <div class="timeline-content">
+                            <p class="font-semibold">Program Completion & Wrap-up</p>
+                            <p class="text-sm text-gray-600">Final assessments, gathering feedback, and comprehensive program review. (No large in-person new training numbers expected, focus on online wrap-up).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-8 mb-4 text-gray-800">Monthly Trainee Distribution (Estimate)</h3>
+                <div class="chart-container">
+                    <canvas id="monthlyTraineesChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="kpis" class="mb-12">
+            <h2 class="section-title">Measuring Success: Key Performance Indicators (KPIs)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="kpi-item p-4 bg-blue-50 rounded-lg shadow">
+                    <h4 class="font-semibold text-blue-700">Participation & Reach</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-600">
+                        <li>Sessions Conducted vs. Planned</li>
+                        <li>Attendance Rate per Group & Dealer</li>
+                        <li>Monthly Trainee Numbers (Actual vs. Expected)</li>
+                    </ul>
+                </div>
+                <div class="kpi-item p-4 bg-blue-50 rounded-lg shadow">
+                    <h4 class="font-semibold text-blue-700">Knowledge & Skill Acquisition</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-600">
+                        <li>Post-Training Assessment Scores</li>
+                        <li>Product Knowledge Retention (Follow-up)</li>
+                        <li>Observed Application of Skills (if applicable)</li>
+                    </ul>
+                </div>
+                <div class="kpi-item p-4 bg-blue-50 rounded-lg shadow">
+                    <h4 class="font-semibold text-blue-700">Engagement & Feedback</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-600">
+                        <li>Engagement Rate per Topic/Module</li>
+                        <li>Post-Training Feedback Scores (Satisfaction)</li>
+                        <li>Qualitative Feedback & Suggestions</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="text-center py-8">
+            <p class="text-lg text-gray-700">This comprehensive training program is designed to empower our partners and drive success for GROHE in the KSA market. With a clear strategy, defined objectives, and measurable outcomes, we are confident in achieving our goals for FY26.</p>
+        </section>
+
+    </main>
+
+    <script>
+        // Function to format labels for Chart.js to wrap text
+        function formatLabel(str, maxwidth) {
+            if (typeof str !== 'string') {
+                return [String(str)]; // Return as an array with the stringified value
+            }
+            const sections = [];
+            const words = str.split(' ');
+            let temp = "";
+
+            words.forEach(function(item, index) {
+                if (temp.length > 0) {
+                    let concat = temp + ' ' + item;
+                    if (concat.length > maxwidth) {
+                        sections.push(temp);
+                        temp = "";
+                    } else {
+                        temp = concat;
+                        if (index === words.length - 1) {
+                            sections.push(temp);
+                            return;
+                        }
+                        return;
+                    }
+                }
+                if (item.length > maxwidth) {
+                    sections.push(item.substring(0, maxwidth));
+                    item = item.substring(maxwidth);
+                }
+                temp = item;
+                if (index === words.length - 1) {
+                    sections.push(temp);
+                }
+            });
+            return sections;
+        }
+
+        // Data for the Audience Chart
+        const audienceData = {
+            labels: [
+                'Abyat',
+                'Hayat',
+                'Ebaa',
+                'Other Partners',
+                '2nd-Level Dealers',
+                'Service Providers',
+                'Project & Designers'
+            ],
+            datasets: [{
+                label: 'Number of Participants',
+                data: [150, 80, 200, 150, 500, 50, 100], // Updated data
+                backgroundColor: [
+                    'rgba(0, 119, 182, 0.7)',   // Primary Blue
+                    'rgba(0, 180, 216, 0.7)',   // Lighter Blue
+                    'rgba(144, 202, 249, 0.7)', // Even Lighter Blue
+                    'rgba(255, 140, 0, 0.7)',    // Accent Orange
+                    'rgba(255, 165, 0, 0.7)',    // Lighter Orange
+                    'rgba(128, 128, 128, 0.7)',  // Grey
+                    'rgba(75, 192, 192, 0.7)'   // Teal
+                ],
+                borderColor: [
+                    'rgba(0, 119, 182, 1)',
+                    'rgba(0, 180, 216, 1)',
+                    'rgba(144, 202, 249, 1)',
+                    'rgba(255, 140, 0, 1)',
+                    'rgba(255, 165, 0, 1)',
+                    'rgba(128, 128, 128, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Config for the Audience Chart
+        const audienceConfig = {
+            type: 'pie',
+            data: audienceData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Distribution of Training Participants by Segment'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + ' persons';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            },
+        };
+
+        // Render the audience chart
+        var audienceChartCtx = document.getElementById('audienceChart').getContext('2d');
+        new Chart(audienceChartCtx, audienceConfig);
+
+        // Data for the Monthly Trainees Chart
+        const monthlyTraineesData = {
+            labels: ['Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25', 'Dec 25', 'Jan 26', 'Feb 26', 'Mar 26'],
+            datasets: [{
+                label: 'Expected Trainees',
+                data: [115, 105, 90, 110, 140, 55, 120, 105, 115, 135],
+                backgroundColor: 'rgba(0, 119, 182, 0.7)',
+                borderColor: 'rgba(0, 119, 182, 1)',
+                borderWidth: 1,
+                borderRadius: 5,
+                barPercentage: 0.6
+            }]
+        };
+
+        // Config for the Monthly Trainees Chart
+        const monthlyTraineesConfig = {
+            type: 'bar',
+            data: monthlyTraineesData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Expected Number of Trainees Per Month'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                // Use the custom formatLabel for tooltip titles if needed
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            },
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += context.parsed.y + ' persons';
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Trainees'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    }
+                }
+            },
+        };
+
+        // Render the monthly trainees chart
+        var monthlyTraineesChartCtx = document.getElementById('monthlyTraineesChart').getContext('2d');
+        new Chart(monthlyTraineesChartCtx, monthlyTraineesConfig);
+    </script>
+
+</body>
+</html>
+
+<!-- Sources: -->
+<!-- 1. https://github.com/iroblesrazzaq/mathematical-expression-evaluator -->
+<!-- 2. https://github.com/chardrreyes/laravel-package-manager -->
+<!-- 3. https://github.com/ambroisealten/POC_PDF -->
+<!-- 4. https://github.com/EduBernardo/our-finances -->
