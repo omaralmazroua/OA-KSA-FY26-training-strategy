@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FY26 GROHE KSA Training Strategy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -14,28 +16,59 @@
             margin: 0;
             padding: 0;
         }
+
         .header-bg {
-            background-color: #0077B6; /* Primary Blue */
+            background-color: #0077B6;
+            /* Primary Blue */
             color: white;
             padding: 2rem 1rem;
             text-align: center;
         }
+
         .header-bg h1 {
             font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
+
         .header-bg p {
             font-size: 1.125rem;
         }
+
         .section-title {
             font-size: 1.75rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            color: #005A8C; /* Darker Blue */
-            border-bottom: 2px solid #FF8C00; /* Accent Orange */
+            color: #005A8C;
+            /* Darker Blue */
+            border-bottom: 2px solid #FF8C00;
+            /* Accent Orange */
             padding-bottom: 0.5rem;
+            display: flex;
+            /* Added for icon alignment */
+            align-items: center;
+            /* Added for icon alignment */
         }
+
+        .section-title i {
+            margin-right: 0.75rem;
+            /* Space between icon and text */
+            color: #FF8C00;
+            /* Icon color */
+        }
+
+        /* Style for sub-section titles with icons */
+        .card h3 {
+            display: flex;
+            align-items: center;
+        }
+
+        .card h3 i {
+            margin-right: 0.5rem;
+            color: #0077B6;
+            /* Primary Blue for sub-section icons */
+        }
+
         .card {
             background-color: white;
             border-radius: 0.5rem;
@@ -43,25 +76,32 @@
             padding: 1.5rem;
             margin-bottom: 1.5rem;
         }
+
         .stat-box {
-            background-color: #E0F7FA; /* Light Cyan for stats */
+            background-color: #E0F7FA;
+            /* Light Cyan for stats */
             padding: 1rem;
             border-radius: 0.5rem;
             text-align: center;
         }
+
         .stat-number {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #0077B6; /* Primary Blue */
+            color: #0077B6;
+            /* Primary Blue */
         }
+
         .stat-label {
             font-size: 0.9rem;
             color: #555;
         }
+
         .timeline {
             position: relative;
             margin: 20px 0;
         }
+
         .timeline::before {
             content: '';
             position: absolute;
@@ -69,83 +109,259 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background-color: #FF8C00; /* Accent Orange */
+            background-color: #FF8C00;
+            /* Accent Orange */
         }
+
         .timeline-item {
             position: relative;
             margin-bottom: 20px;
             padding-left: 30px;
         }
+
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -7px; /* Adjust to center the dot on the line */
-            top: 5px; /* Adjust vertical alignment */
+            left: -7px;
+            /* Adjust to center the dot on the line */
+            top: 5px;
+            /* Adjust vertical alignment */
             width: 16px;
             height: 16px;
             border-radius: 50%;
-            background-color: #0077B6; /* Primary Blue */
+            background-color: #0077B6;
+            /* Primary Blue */
             border: 2px solid white;
             z-index: 1;
         }
+
         .timeline-date {
             font-weight: bold;
-            color: #005A8C; /* Darker Blue */
+            color: #005A8C;
+            /* Darker Blue */
             display: block;
             margin-bottom: 0.25rem;
         }
+
         .timeline-content {
             background-color: #f9f9f9;
             padding: 10px;
             border-radius: 6px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
+
         .kpi-item {
             background-color: #f0f0f0;
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 10px;
         }
+
+        .kpi-item h4 {
+            display: flex;
+            align-items: center;
+        }
+
+        .kpi-item h4 i {
+            margin-right: 0.5rem;
+            color: #FF8C00;
+            /* Accent Orange for KPI icons */
+        }
+
         .chart-container {
             position: relative;
             margin: auto;
             height: 350px;
             width: 100%;
-            max-width: 700px; /* Increased max-width for better display */
+            max-width: 700px;
+            /* Increased max-width for better display */
         }
+
+        .resource-item h4 i {
+            /* New style for resource icons */
+            margin-right: 0.5rem;
+            color: #0077B6;
+            /* Primary Blue for resource icons */
+        }
+
+        /* Styles for the map section */
+        .map-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            /* Increased max-width */
+            aspect-ratio: 1.6 / 1;
+            /* Approximate aspect ratio for common maps (width/height) */
+            margin: 2rem auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #e0f0ff;
+            /* Light background if map doesn't load */
+        }
+
+        .map-container img {
+            width: 100%;
+            height: 100%;
+            /* Make image fill the container */
+            object-fit: contain;
+            /* Ensure the image fits within its container without cropping */
+            display: block;
+        }
+
+        .map-point {
+            position: absolute;
+            width: 18px;
+            /* Size of the icon */
+            height: 18px;
+            /* Size of the icon */
+            background-color: #FF0000;
+            /* Red dot for visibility */
+            border-radius: 50%;
+            border: 2px solid white;
+            transform: translate(-50%, -50%);
+            /* Center the dot on the coordinates */
+            cursor: help;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .map-point:hover {
+            transform: translate(-50%, -50%) scale(1.2);
+            background-color: #0077B6;
+            /* Change color on hover */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .map-point .tooltiptext {
+            visibility: hidden;
+            width: max-content;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            /* Position above the point */
+            left: 50%;
+            margin-left: -50px;
+            /* Center the tooltip */
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .map-point:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Adjusted point positions for the provided map outline image */
+        .point-riyadh {
+            top: 51%;
+            left: 51%;
+        }
+
+        /* Riyadh: Slightly lower for better central placement */
+        .point-jeddah {
+            top: 65%;
+            left: 30%;
+        }
+
+        /* Jeddah: Slightly lower and left, near the coast */
+        .point-dammam {
+            top: 36%;
+            left: 68%;
+        }
+
+        /* Dammam: More to the far east coast */
+        .point-hail {
+            top: 23%;
+            left: 33%;
+        }
+
+        /* Hail: North-central, a bit more accurate */
+        .point-qassim {
+            top: 35%;
+            left: 42%;
+        }
+
+        /* Qassim (Buraidah/Unaizah): South of Hail, more central */
+        .point-madinah {
+            top: 48%;
+            left: 30%;
+        }
+
+        /* Madinah: North of Jeddah, slightly inland from the west coast */
+        .point-abha {
+            top: 76%;
+            left: 41%;
+        }
+
+        /* Abha: South-west, inland, slightly lower */
+        .point-jizan {
+            top: 94%;
+            left: 42%;
+        }
+
+        /* Jizan: Far south-west coast, very close to the border */
+        .point-alahsa {
+            top: 41%;
+            left: 60%;
+        }
+
+        /* Al-Ahsa (Hofuf): East, inland from Dammam, slightly more south */
+        .point-jubail {
+            top: 28%;
+            left: 63%;
+        }
+
+        /* Jubail: North-east coast, north of Dammam */
+        .point-tabuk {
+            top: 24%;
+            left: 15%;
+        }
+
+        /* Tabuk: Northwest, closer to the corner */
+
 
         @media (max-width: 768px) {
             .chart-container {
-                height: 250px; /* Adjusted height for smaller screens */
+                height: 250px;
+                /* Adjusted height for smaller screens */
             }
+
             .header-bg h1 {
                 font-size: 2rem;
             }
+
             .header-bg p {
                 font-size: 1rem;
             }
+
             .section-title {
                 font-size: 1.5rem;
             }
+
+            .map-point {
+                width: 14px;
+                height: 14px;
+            }
+
+            .map-point .tooltiptext {
+                font-size: 0.7rem;
+                padding: 4px 6px;
+                margin-left: -40px;
+            }
         }
-
-        /* No SVG and No Mermaid JS confirmation: 
-           This HTML file does not use SVG for graphics or Mermaid JS for diagrams. 
-           All charts are rendered using Chart.js (Canvas), and other structural 
-           elements are built with HTML and styled with Tailwind CSS.
-        */
-
-        /* Color Palette Used (Conceptual Name: "Corporate Blue & Orange"):
-           - Primary Blue: #0077B6
-           - Secondary/Lighter Blue: #00B4D8 (or derived tints)
-           - Accent Orange: #FF8C00
-           - Accent Green (for positive indicators, if needed): #4CAF50
-           - Text (Dark Gray): #333333
-           - Background (Light Gray): #F8F9FA
-           - Card Background (White): #FFFFFF
-        */
     </style>
 </head>
+
 <body class="bg-gray-100">
 
     <header class="header-bg">
@@ -156,38 +372,55 @@
 
     <main class="container mx-auto p-4 md:p-8">
         <section id="overview" class="mb-12">
-            <h2 class="section-title">Strategic Overview</h2>
+            <h2 class="section-title"><i class="fas fa-bullseye"></i> Strategic Overview</h2>
             <div class="card">
                 <p class="text-gray-700 mb-4">
-                    This document outlines the comprehensive training strategy for GROHE in the Kingdom of Saudi Arabia for fiscal year 2026. Our goal is to empower our partners with the knowledge and skills necessary to excel, driving both individual success and overall brand growth. This strategy focuses on a blend of in-depth product knowledge, effective sales techniques, and robust support systems, targeting approximately 1,100 to 1,200 individuals over the year.
+                    This document outlines the comprehensive training strategy for GROHE in the Kingdom of Saudi Arabia
+                    for fiscal year 2026. Our goal is to empower our partners with the knowledge and skills necessary to
+                    excel, driving both individual success and overall brand growth. This strategy focuses on a blend of
+                    in-depth product knowledge, effective sales techniques, and robust support systems, targeting
+                    approximately 1,100 to 1,200 individuals over the year.
                 </p>
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">Key Strategic Objectives:</h3>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3"><i class="fas fa-lightbulb"></i> Key Strategic
+                    Objectives:</h3>
                 <ul class="list-disc list-inside space-y-2 text-gray-700">
-                    <li><strong>Enhance Product Mastery:</strong> Ensure all partners achieve comprehensive product knowledge across the entire GROHE portfolio, including all categories and new innovations such as Euroeco, Cubeo, Showerframe, and HOYB.</li>
-                    <li><strong>Accelerate New Product Adoption:</strong> Provide targeted, timely training for new product launches to drive rapid understanding and market penetration.</li>
-                    <li><strong>Strengthen Partner Engagement:</strong> Foster deeper relationships and loyalty with main dealers, other partners, and second-level dealers through valuable and consistent training.</li>
-                    <li><strong>Empower Sales & Service Teams:</strong> Equip sales and service personnel with the knowledge and skills necessary to effectively represent, sell, and support GROHE products.</li>
-                    <li><strong>Drive Performance & Accountability:</strong> Implement robust tracking and reporting mechanisms to monitor training participation, effectiveness, and impact on business objectives.</li>
+                    <li><strong>Enhance Product Mastery:</strong> Ensure all partners achieve comprehensive product
+                        knowledge across the entire GROHE portfolio, including all categories and new innovations such
+                        as Euroeco, Cubeo, Showerframe, and HOYB.</li>
+                    <li><strong>Accelerate New Product Adoption:</strong> Provide targeted, timely training for new
+                        product launches to drive rapid understanding and market penetration.</li>
+                    <li><strong>Strengthen Partner Engagement:</strong> Foster deeper relationships and loyalty with
+                        main dealers, other partners, and second-level dealers through valuable and consistent training.
+                    </li>
+                    <li><strong>Empower Sales & Service Teams:</strong> Equip sales and service personnel with the
+                        knowledge and skills necessary to effectively represent, sell, and support GROHE products.</li>
+                    <li><strong>Drive Performance & Accountability:</strong> Implement robust tracking and reporting
+                        mechanisms to monitor training participation, effectiveness, and impact on business objectives.
+                    </li>
                 </ul>
             </div>
         </section>
 
         <section id="audience" class="mb-12">
-            <h2 class="section-title">Our Audience: A Diverse Group</h2>
+            <h2 class="section-title"><i class="fas fa-users"></i> Our Audience: A Diverse Group</h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="card">
-                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Total Trainee Pool: <span class="text-blue-600">1230</span></h3>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800"><i class="fas fa-chart-pie"></i> Total Trainee
+                        Pool: <span class="text-blue-600">1260</span></h3>
                     <p class="text-gray-600 mb-4">
-                        Our training program is designed to cater to a diverse range of professionals within our network, ensuring everyone has the knowledge to succeed. The distribution is as follows:
+                        Our training program is designed to cater to a diverse range of professionals within our
+                        network, ensuring everyone has the knowledge to succeed. The distribution is as follows:
                     </p>
                     <div class="chart-container">
                         <canvas id="audienceChart"></canvas>
                     </div>
                 </div>
                 <div class="card">
-                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Geographical Reach</h3>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800"><i class="fas fa-map-marker-alt"></i>
+                        Geographical Reach</h3>
                     <p class="text-gray-600 mb-4">
-                        Training initiatives will be conducted across key locations in Saudi Arabia to ensure widespread participation and knowledge dissemination.
+                        Training initiatives will be conducted across key locations in Saudi Arabia to ensure widespread
+                        participation and knowledge dissemination.
                     </p>
                     <ul class="list-disc list-inside space-y-1 text-gray-700">
                         <li>Riyadh</li>
@@ -203,114 +436,199 @@
                         <li>Tabuk</li>
                     </ul>
                     <p class="mt-4 text-gray-600">
-                        Specific training initiatives: Abyat (Riyadh, Jeddah, Dammam); Ebaa, Hayat, Other Partners & 2nd-Level Dealers (all listed cities); Service Providers (Riyadh & Jeddah).
+                        Specific training initiatives: Abyat (Riyadh, Jeddah, Dammam); Ebaa, Hayat, Other Partners &
+                        2nd-Level Dealers (all listed cities); Service Providers (Riyadh & Jeddah).
                     </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-semibold mb-4 text-gray-800"><i class="fas fa-map-marked-alt"></i> Targeted
+                    Training Locations</h3>
+                <p class="text-gray-600 mb-6">
+                    Below is a map of Saudi Arabia highlighting the key cities where our training programs will be
+                    conducted throughout FY26.
+                </p>
+                <div class="map-container">
+                    <img src="map-of-saudi-arabia-outline-silhouette-of-saudi-arabia-map-vector-illustration-RGD9P2.jpg"
+                        alt="Map of Saudi Arabia" class="w-full h-auto">
+
+                    <div class="map-point point-riyadh">
+                        <span class="tooltiptext">Riyadh</span>
+                    </div>
+                    <div class="map-point point-jeddah">
+                        <span class="tooltiptext">Jeddah</span>
+                    </div>
+                    <div class="map-point point-dammam">
+                        <span class="tooltiptext">Dammam</span>
+                    </div>
+                    <div class="map-point point-hail">
+                        <span class="tooltiptext">Hail</span>
+                    </div>
+                    <div class="map-point point-qassim">
+                        <span class="tooltiptext">Qassim</span>
+                    </div>
+                    <div class="map-point point-madinah">
+                        <span class="tooltiptext">Madinah</span>
+                    </div>
+                    <div class="map-point point-abha">
+                        <span class="tooltiptext">Abha</span>
+                    </div>
+                    <div class="map-point point-jizan">
+                        <span class="tooltiptext">Jizan</span>
+                    </div>
+                    <div class="map-point point-alahsa">
+                        <span class="tooltiptext">Al-Ahsa</span>
+                    </div>
+                    <div class="map-point point-jubail">
+                        <span class="tooltiptext">Jubail</span>
+                    </div>
+                    <div class="map-point point-tabuk">
+                        <span class="tooltiptext">Tabuk</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="program-details" class="mb-12">
-            <h2 class="section-title">Training Program: Content & Delivery</h2>
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Training Program: Content & Delivery</h2>
             <div class="grid md:grid-cols-1 gap-6">
                 <div class="card">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Core Curriculum</h3>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800"><i class="fas fa-book-open"></i> Core
+                        Curriculum</h3>
                     <p class="text-gray-600 mb-4">
-                        All participants will undergo comprehensive training covering core GROHE product categories and brand values. This ensures a consistent understanding and high level of expertise across all partners.
+                        All participants will undergo comprehensive training covering core GROHE product categories and
+                        brand values. This ensures a consistent understanding and high level of expertise across all
+                        partners.
                     </p>
                     <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-4">
                         <div class="bg-gray-100 p-4 rounded-lg">
                             <h4 class="font-semibold text-lg text-blue-600">Module 1: Brand & Bath Category</h4>
-                            <p class="text-sm text-gray-700">Includes GROHE brand philosophy, heritage, values, key bathroom collections, innovative technologies, and design principles, and segmentation.</p>
+                            <p class="text-sm text-gray-700">Includes GROHE brand philosophy, heritage, values, key
+                                bathroom collections, innovative technologies, and design principles, and segmentation.
+                            </p>
                         </div>
                         <div class="bg-gray-100 p-4 rounded-lg">
                             <h4 class="font-semibold text-lg text-blue-600">Module 2: Kitchen, Flushing, & Ceramics</h4>
-                            <p class="text-sm text-gray-700">Focuses on advanced shower systems, SmartControl, Rainshower technologies, and effective utilization of the GROHE website and digital resources.</p>
+                            <p class="text-sm text-gray-700">Focuses on advanced shower systems, SmartControl,
+                                Rainshower technologies, and effective utilization of the GROHE website and digital
+                                resources.</p>
                         </div>
                         <div class="bg-gray-100 p-4 rounded-lg">
                             <h4 class="font-semibold text-lg text-blue-600">Module 3: Showers & Websites</h4>
-                            <p class="text-sm text-gray-700">Covers flushing systems, toilets, bidet solutions, ceramic collections, and the full range of kitchen faucets, sinks, and water systems (e.g., GROHE Blue, Red).</p>
+                            <p class="text-sm text-gray-700">Covers flushing systems, toilets, bidet solutions, ceramic
+                                collections, and the full range of kitchen faucets, sinks, and water systems (e.g.,
+                                GROHE Blue, Red).</p>
                         </div>
                         <div class="bg-gray-100 p-4 rounded-lg">
-                            <h4 class="font-semibold text-lg text-blue-600">Module 4 (For Spesific Groups): G4+ & SPA for Projects (New Partners Focus)</h4>
-                            <p class="text-sm text-gray-700">In-depth focus on G4+ systems and specific SPA Category tailored for project-based partners and new collaborations.</p>
+                            <h4 class="font-semibold text-lg text-blue-600">Module 4 (For Spesific Groups): G4+ & SPA
+                                for Projects (New Partners Focus)</h4>
+                            <p class="text-sm text-gray-700">In-depth focus on G4+ systems and specific SPA Category
+                                tailored for project-based partners and new collaborations.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">New Product Focus (Launches starting October 2025)</h3>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800"><i class="fas fa-star"></i> New Product Focus
+                        (Launches starting October 2025)</h3>
                     <p class="text-gray-600 mb-4">
-                        Dedicated training modules will be provided for all new product launches to ensure our partners are fully equipped to promote and support these innovations.
+                        Dedicated training modules will be provided for all new product launches to ensure our partners
+                        are fully equipped to promote and support these innovations.
                     </p>
                     <ul class="list-disc list-inside space-y-1 text-gray-700">
-                        <li><strong>Euroeco:</strong> Features, benefits, sales arguments.</li>
-                        <li><strong>Cubeo:</strong> Design, functionality, market positioning.</li>
                         <li><strong>Showerframe:</strong> Unique selling points, application, installation.</li>
+                        <li><strong>New Euroeco:</strong> Features, benefits, sales arguments.</li>
+                        <li><strong>Cubeo:</strong> Design, functionality, market positioning.</li>
                         <li><strong>HOYB:</strong> Key features, benefits, and market strategy.</li>
-                        <li><strong>Additional Launches (Dec 2025 - Mar 2026):</strong> Tailored training as new products are introduced.</li>
+                        <li><strong>Additional Launches (Dec 2025 - Mar 2026):</strong> Tailored training as new
+                            products are introduced.</li>
                     </ul>
                 </div>
 
                 <div class="card">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Delivery Methodology</h3>
-                    <p class="text-gray-600 mb-2"><strong class="text-blue-600">In-Person Workshops:</strong> Interactive, in person trainings in key locations, fostering direct engagement and practical learning. Each group attends 3 core module sessions (1 hour each).</p>
-                    <p class="text-gray-600 mb-2"><strong class="text-blue-600">Online Backup Sessions:</strong> Monthly virtual sessions for Q&A, reinforcement, updates, and accessibility for those unable to attend in-person, besides, GTC website learnings.</p>
-                    <p class="text-gray-600"><strong class="text-blue-600">Product Launch:</strong> Targeted, high-impact sessions immediately following new product introductions.</p>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800"><i class="fas fa-chalkboard"></i> Delivery
+                        Methodology</h3>
+                    <p class="text-gray-600 mb-2"><strong class="text-blue-600">In-Person Workshops:</strong>
+                        Interactive, in person trainings in key locations, fostering direct engagement and practical
+                        learning. Each group attends 2-3 core module sessions (1 hour each).</p>
+                    <p class="text-gray-600 mb-2"><strong class="text-blue-600">Online Backup Sessions:</strong> Monthly
+                        virtual sessions for Q&A, reinforcement, updates, and accessibility for those unable to attend
+                        in-person, besides, GTC website learnings.</p>
+                    <p class="text-gray-600"><strong class="text-blue-600">Product Launch:</strong> Targeted,
+                        high-impact sessions immediately following new product introductions.</p>
                 </div>
             </div>
         </section>
 
         <section id="pipeline" class="mb-12">
-            <h2 class="section-title">FY26 Training Pipeline & Projected Trainee Numbers</h2>
+            <h2 class="section-title"><i class="fas fa-calendar-alt"></i> FY26 Training Pipeline & Projected Trainee
+                Numbers</h2>
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <div class="timeline">
                     <div class="timeline-item">
-                        <p class="timeline-date">June 2025</p>
-                        <div class="timeline-content">
-                            <p class="font-semibold">Abyat New team preperation Training (Round 2), other partners preperation on G4+, and (L&L sessions)</p>
-                            <p class="text-sm text-gray-600">Comprehensive training for Abyat staff. Focus on full product portfolio. Expected Trainees: <span class="font-bold">115</span></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
                         <p class="timeline-date">July 2025</p>
                         <div class="timeline-content">
-                            <p class="font-semibold">Ebaa showrooms RUH, JED, & DMM, 2nd Level Dealers, & Service training at JED CS</p>
-                            <p class="text-sm text-gray-600">Focus on core curriculum refinement and initial regional outreach. Expected Trainees: <span class="font-bold">105</span></p>
+                            <p class="font-semibold">Abyat New team preperation Training (Round 2), other partners
+                                preperation on G4+, and (L&L sessions)</p>
+                            <p class="text-sm text-gray-600">Comprehensive training for Abyat staff. Focus on full
+                                product portfolio. Expected Trainees: <span class="font-bold">115</span></p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <p class="timeline-date">August 2025</p>
                         <div class="timeline-content">
-                            <p class="font-semibold">Continued Training to cover other dealers "Hayat, Other Partners, & 2nd level" incliding L&L sessions</p>
-                            <p class="text-sm text-gray-600">Continuation of core module training and preparation. Expected Trainees: <span class="font-bold">90</span></p>
+                            <p class="font-semibold">Ebaa showrooms RUH, JED, & DMM, 2nd Level Dealers, & Service
+                                training at JED CS</p>
+                            <p class="text-sm text-gray-600">Focus on core curriculum refinement and initial regional
+                                outreach. Expected Trainees: <span class="font-bold">105</span></p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <p class="timeline-date">September 2025</p>
                         <div class="timeline-content">
-                            <p class="font-semibold">Pre-Launch & Round 1 KSA including remote cities</p>
-                            <p class="text-sm text-gray-600">Final preparations for new products training and the start of full regional coverage. Expected Trainees: <span class="font-bold">110+</span></p>
+                            <p class="font-semibold">Continued Training to cover other dealers "Hayat, Other Partners, &
+                                2nd level" incliding L&L sessions</p>
+                            <p class="text-sm text-gray-600">Continuation of core module training and preparation.
+                                Expected Trainees: <span class="font-bold">90</span></p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <p class="timeline-date">October - November 2025</p>
+                        <p class="timeline-date">October 2025</p>
+                        <div class="timeline-content">
+                            <p class="font-semibold">Pre-Launch & Round 1 KSA including remote cities</p>
+                            <p class="text-sm text-gray-600">Final preparations for new products training and the start
+                                of full regional coverage. Expected Trainees: <span class="font-bold">110+</span></p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <p class="timeline-date">November 2025</p>
                         <div class="timeline-content">
                             <p class="font-semibold">New Product Launches Round 1 Regional Training</p>
-                            <p class="text-sm text-gray-600">Intensive training on new products alongside the first full round of core category training. Expected Trainees: <span class="font-bold">195</span> (Oct: 140, Nov: 55).</p>
+                            <p class="text-sm text-gray-600">Intensive training on new products alongside the first full
+                                round of core category training. Expected Trainees: <span class="font-bold">195</span>
+                                (Oct: 140, Nov: 55).</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <p class="timeline-date">December 2025 - March 2026</p>
                         <div class="timeline-content">
-                            <p class="font-semibold">Additional New Launches & Round 2 Regional Training (including remote cities)</p>
-                            <p class="text-sm text-gray-600">Training for subsequent product introductions and the second round of comprehensive core category training, including reinforcement and advanced topics. Expected Trainees: <span class="font-bold">475</span> (Dec: 120, Jan: 105, Feb: 115, Mar: 135).</p>
+                            <p class="font-semibold">Additional New Launches & Round 2 Regional Training (including
+                                remote cities)</p>
+                            <p class="text-sm text-gray-600">Training for subsequent product introductions and the
+                                second round of comprehensive core category training, including reinforcement and
+                                advanced topics. Expected Trainees: <span class="font-bold">475</span> (Dec: 120, Jan:
+                                105, Feb: 115, Mar: 135).</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <p class="timeline-date">April 2026</p>
                         <div class="timeline-content">
-                            <p class="font-semibold"> Installers Product Awareness (L&L), Program Completion, & Wrap-up</p>
-                            <p class="text-sm text-gray-600"> Installers Product Awarness in Key Cities RUH JED DMM. Final assessments, gathering feedback, and comprehensive program review. (No large in-person new training numbers expected, focus on online wrap-up).</p>
+                            <p class="font-semibold"> Installers Product Awareness (L&L), Program Completion, & Wrap-up
+                            </p>
+                            <p class="text-sm text-gray-600"> Installers Product Awarness in Key Cities RUH JED DMM.
+                                Final assessments, gathering feedback, and comprehensive program review. (No large
+                                in-person new training numbers expected, focus on online wrap-up).</p>
                         </div>
                     </div>
                 </div>
@@ -323,10 +641,11 @@
         </section>
 
         <section id="kpis" class="mb-12">
-            <h2 class="section-title">Measuring Success: Key Performance Indicators (KPIs)</h2>
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> Measuring Success: Key Performance Indicators
+                (KPIs)</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="kpi-item p-4 bg-blue-50 rounded-lg shadow">
-                    <h4 class="font-semibold text-blue-700">Participation & Reach</h4>
+                    <h4 class="font-semibold text-blue-700"><i class="fas fa-users"></i> Participation & Reach</h4>
                     <ul class="list-disc list-inside text-sm text-gray-600">
                         <li>Sessions Conducted vs. Planned</li>
                         <li>Attendance Rate per Group & Dealer</li>
@@ -334,7 +653,8 @@
                     </ul>
                 </div>
                 <div class="kpi-item p-4 bg-blue-50 rounded-lg shadow">
-                    <h4 class="font-semibold text-blue-700">Knowledge & Skill Acquisition</h4>
+                    <h4 class="font-semibold text-blue-700"><i class="fas fa-brain"></i> Knowledge & Skill Acquisition
+                    </h4>
                     <ul class="list-disc list-inside text-sm text-gray-600">
                         <li>Post-Training Assessment Scores</li>
                         <li>Product Knowledge Retention (Follow-up)</li>
@@ -342,7 +662,7 @@
                     </ul>
                 </div>
                 <div class="kpi-item p-4 bg-blue-50 rounded-lg shadow">
-                    <h4 class="font-semibold text-blue-700">Engagement & Feedback</h4>
+                    <h4 class="font-semibold text-blue-700"><i class="fas fa-comments"></i> Engagement & Feedback</h4>
                     <ul class="list-disc list-inside text-sm text-gray-600">
                         <li>Engagement Rate per Topic/Module</li>
                         <li>Post-Training Feedback Scores (Satisfaction)</li>
@@ -352,46 +672,71 @@
             </div>
         </section>
         <section id="program-details" class="mb-12">
-            <h2 class="section-title">Tools Supporting Our Strategy</h2>
+            <h2 class="section-title"><i class="fas fa-tools"></i> Tools Supporting Our Strategy</h2>
             <div class="grid md:grid-cols-1 gap-6">
                 <div class="card">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Resources and Links</h3>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800"><i class="fas fa-link"></i> Resources and Links
+                    </h3>
                     <p class="text-gray-600 mb-4">
-                        We've leveraged a suite of tools to effectively support our strategy. Here are the key resources:
+                        We've leveraged a suite of tools to effectively support our strategy. Here are the key
+                        resources:
                     </p>
                     <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <h4 class="font-semibold text-lg text-blue-600">Action Plan</h4>
-                            <p class="text-sm text-gray-700">Access our comprehensive action plan here: <a href="https://docs.google.com/spreadsheets/d/1zHI4EnliazBdnVxBoaiX4B7uYt8izwEp409yeygIU5U/edit?gid=1400152455#gid=1400152455" class="text-blue-500 hover:underline" target="_blank">Link to Action Plan</a></p>
+                        <div class="bg-gray-100 p-4 rounded-lg resource-item">
+                            <h4 class="font-semibold text-lg text-blue-600"><i class="fas fa-list-ol"></i> Action Plan
+                            </h4>
+                            <p class="text-sm text-gray-700">Access our comprehensive action plan here: <a
+                                    href="https://docs.google.com/spreadsheets/d/1zHI4EnliazBdnVxBoaiX4B7uYt8izwEp409yeygIU5U/edit?gid=1400152455#gid=1400152455"
+                                    class="text-blue-500 hover:underline" target="_blank">Link to Action Plan</a></p>
                         </div>
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <h4 class="font-semibold text-lg text-blue-600">Training Progress Checklist</h4>
-                            <p class="text-sm text-gray-700">Track training progress with this checklist: <a href="https://docs.google.com/spreadsheets/d/1nf-GnyI_Sgsvbhyrh2rwMV4zQOspk3qbXO0sQhtjyjc/edit?gid=1550268969#gid=1550268969" class="text-blue-500 hover:underline" target="_blank">Link to Training Progress Checklist</a></p>
+                        <div class="bg-gray-100 p-4 rounded-lg resource-item">
+                            <h4 class="font-semibold text-lg text-blue-600"><i class="fas fa-clipboard-list"></i>
+                                Training Progress Checklist</h4>
+                            <p class="text-sm text-gray-700">Track training progress with this checklist: <a
+                                    href="https://docs.google.com/spreadsheets/d/1nf-GnyI_Sgsvbhyrh2rwMV4zQOspk3qbXO0sQhtjyjc/edit?gid=1550268969#gid=1550268969"
+                                    class="text-blue-500 hover:underline" target="_blank">Link to Training Progress
+                                    Checklist</a></p>
                         </div>
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <h4 class="font-semibold text-lg text-blue-600">Product Knowledge Evaluation Quiz</h4>
-                            <p class="text-sm text-gray-700">Test product knowledge with our evaluation quiz: <a href="https://docs.google.com/forms/d/19jHQex_iO1Dpq49B3oz4-2Bu2bz74F685B5mp9JT9lQ/edit" class="text-blue-500 hover:underline" target="_blank">Link to Product Knowledge Quiz</a></p>
+                        <div class="bg-gray-100 p-4 rounded-lg resource-item">
+                            <h4 class="font-semibold text-lg text-blue-600"><i class="fas fa-question-circle"></i>
+                                Product Knowledge Evaluation Quiz</h4>
+                            <p class="text-sm text-gray-700">Test product knowledge with our evaluation quiz: <a
+                                    href="https://docs.google.com/forms/d/19jHQex_iO1Dpq49B3oz4-2Bu2bz74F685B5mp9JT9lQ/edit"
+                                    class="text-blue-500 hover:underline" target="_blank">Link to Product Knowledge
+                                    Quiz</a></p>
                         </div>
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <h4 class="font-semibold text-lg text-blue-600">Monthly Travel Plan</h4>
-                            <p class="text-sm text-gray-700">View the monthly travel plan: <a href="https://docs.google.com/spreadsheets/d/1xKMk_kZqGx5t0a47NIdaa7DeREXj6IMH3yWaSxKi_uw/edit?gid=1708332420#gid=1708332420" class="text-blue-500 hover:underline" target="_blank">Link to Monthly Travel Plan</a></p>
+                        <div class="bg-gray-100 p-4 rounded-lg resource-item">
+                            <h4 class="font-semibold text-lg text-blue-600"><i class="fas fa-plane"></i> Monthly Travel
+                                Plan</h4>
+                            <p class="text-sm text-gray-700">View the monthly travel plan: <a
+                                    href="https://docs.google.com/spreadsheets/d/1xKMk_kZqGx5t0a47NIdaa7DeREXj6IMH3yWaSxKi_uw/edit?gid=1708332420#gid=1708332420"
+                                    class="text-blue-500 hover:underline" target="_blank">Link to Monthly Travel
+                                    Plan</a></p>
                         </div>
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <h4 class="font-semibold text-lg text-blue-600">Monthly Report</h4>
-                            <p class="text-sm text-gray-700">Access the latest monthly report: <a href="https://docs.google.com/presentation/d/1T9_5wrMLxo5yOVnyVFy-ECO3PcAHOCzX/edit?slide=id.p2#slide=id.p2" class="text-blue-500 hover:underline" target="_blank">Link to Monthly Report</a></p>
+                        <div class="bg-gray-100 p-4 rounded-lg resource-item">
+                            <h4 class="font-semibold text-lg text-blue-600"><i class="fas fa-chart-bar"></i> Monthly
+                                Report</h4>
+                            <p class="text-sm text-gray-700">Access the latest monthly report: <a
+                                    href="https://docs.google.com/presentation/d/1T9_5wrMLxo5yOVnyVFy-ECO3PcAHOCzX/edit?slide=id.p2#slide=id.p2"
+                                    class="text-blue-500 hover:underline" target="_blank">Link to Monthly Report</a></p>
                         </div>
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <h4 class="font-semibold text-lg text-blue-600">GROHE Training Companion</h4>
-                            <p class="text-sm text-gray-700">Log in to the GROHE Training Companion: <a href="https://training.grohe.com/login" class="text-blue-500 hover:underline" target="_blank">Link to GROHE Training Companion</a></p>
+                        <div class="bg-gray-100 p-4 rounded-lg resource-item">
+                            <h4 class="font-semibold text-lg text-blue-600"><i class="fas fa-graduation-cap"></i> GROHE
+                                Training Companion</h4>
+                            <p class="text-sm text-gray-700">Log in to the GROHE Training Companion: <a
+                                    href="https://training.grohe.com/login" class="text-blue-500 hover:underline"
+                                    target="_blank">Link to GROHE Training Companion</a></p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
 
         <section id="conclusion" class="text-center py-8">
-            <p class="text-lg text-gray-700">This comprehensive training program is designed to empower our partners and drive success for GROHE in the KSA market. With a clear strategy, defined objectives, and measurable outcomes, we are confident in achieving our goals for FY26.</p>
+            <p class="text-lg text-gray-700">This comprehensive training program is designed to empower our partners and
+                drive success for GROHE in the KSA market. With a clear strategy, defined objectives, and measurable
+                outcomes, we are confident in achieving our goals for FY26.</p>
         </section>
 
     </main>
@@ -400,188 +745,165 @@
         // Function to format labels for Chart.js to wrap text
         function formatLabel(str, maxwidth) {
             if (typeof str !== 'string') {
-                return [String(str)]; // Return as an array with the stringified value
+                return [String(str)]; // Return as an array
             }
-            const sections = [];
-            const words = str.split(' ');
-            let temp = "";
+            let words = str.split(' ');
+            let lines = [];
+            let currentLine = words[0];
 
-            words.forEach(function(item, index) {
-                if (temp.length > 0) {
-                    let concat = temp + ' ' + item;
-                    if (concat.length > maxwidth) {
-                        sections.push(temp);
-                        temp = "";
-                    } else {
-                        temp = concat;
-                        if (index === words.length - 1) {
-                            sections.push(temp);
-                            return;
-                        }
-                        return;
-                    }
+            for (let i = 1; i < words.length; i++) {
+                let word = words[i];
+                if (currentLine.length + word.length + 1 < maxwidth) {
+                    currentLine += ' ' + word;
+                } else {
+                    lines.push(currentLine);
+                    currentLine = word;
                 }
-                if (item.length > maxwidth) {
-                    sections.push(item.substring(0, maxwidth));
-                    item = item.substring(maxwidth);
-                }
-                temp = item;
-                if (index === words.length - 1) {
-                    sections.push(temp);
-                }
-            });
-            return sections;
+            }
+            lines.push(currentLine);
+            return lines;
         }
 
-        // Data for the Audience Chart
-        const audienceData = {
-            labels: [
-                'Abyat',
-                'Hayat',
-                'Ebaa',
-                'Other Partners',
-                '2nd-Level Dealers',
-                'Service Providers',
-                'Project & Designers'
-            ],
-            datasets: [{
-                label: 'Number of Participants',
-                data: [150, 80, 200, 150, 500, 50, 100], // Updated data
-                backgroundColor: [
-                    'rgba(0, 119, 182, 0.7)',   // Primary Blue
-                    'rgba(0, 180, 216, 0.7)',   // Lighter Blue
-                    'rgba(144, 202, 249, 0.7)', // Even Lighter Blue
-                    'rgba(255, 140, 0, 0.7)',    // Accent Orange
-                    'rgba(255, 165, 0, 0.7)',    // Lighter Orange
-                    'rgba(128, 128, 128, 0.7)',  // Grey
-                    'rgba(75, 192, 192, 0.7)'   // Teal
-                ],
-                borderColor: [
-                    'rgba(0, 119, 182, 1)',
-                    'rgba(0, 180, 216, 1)',
-                    'rgba(144, 202, 249, 1)',
-                    'rgba(255, 140, 0, 1)',
-                    'rgba(255, 165, 0, 1)',
-                    'rgba(128, 128, 128, 1)',
-                    'rgba(75, 192, 192, 1)'
-                ],
-                borderWidth: 1
-            }]
-        };
-
-        // Config for the Audience Chart
-        const audienceConfig = {
-            type: 'pie',
-            data: audienceData,
+        // Audience Distribution Chart (Updated with Abyat, Hayat, Ebaa breakdown)
+        const audienceCtx = document.getElementById('audienceChart').getContext('2d');
+        const audienceChart = new Chart(audienceCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Abyat (150)', 'Hayat (80)', 'Ebaa (200)', 'Other Partners (300)', '2nd Level Dealers (350)', 'Service Providers (100)', 'GROHE Staff (80)'],
+                datasets: [{
+                    data: [150, 80, 200, 300, 350, 100, 80], // Total 1260
+                    backgroundColor: [
+                        '#0077B6', // Abyat (Primary Blue)
+                        '#00B4D8', // Hayat (Lighter Blue)
+                        '#FF8C00', // Ebaa (Accent Orange)
+                        '#4CAF50', // Other Partners (Accent Green)
+                        '#A8DADC', // 2nd Level Dealers (Light Blue/Cyan)
+                        '#ADD8E6', // Service Providers (Light Blue shade)
+                        '#87CEEB'  // GROHE Staff (Sky Blue shade)
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Distribution of Training Participants by Segment'
+                        position: 'right',
+                        labels: {
+                            color: '#333',
+                            font: {
+                                size: 14
+                            }
+                        }
                     },
                     tooltip: {
                         callbacks: {
-                            label: function(context) {
+                            label: function (context) {
                                 let label = context.label || '';
                                 if (label) {
                                     label += ': ';
                                 }
-                                if (context.parsed !== null) {
-                                    label += context.parsed + ' persons';
+                                if (context.parsed) {
+                                    label += context.parsed + ' trainees';
                                 }
                                 return label;
                             }
                         }
                     }
                 }
-            },
-        };
+            }
+        });
 
-        // Render the audience chart
-        var audienceChartCtx = document.getElementById('audienceChart').getContext('2d');
-        new Chart(audienceChartCtx, audienceConfig);
 
-        // Data for the Monthly Trainees Chart
-        const monthlyTraineesData = {
-            labels: ['Jun 25', 'Jul 25', 'Aug 25', 'Sep 25', 'Oct 25', 'Nov 25', 'Dec 25', 'Jan 26', 'Feb 26', 'Mar 26'],
-            datasets: [{
-                label: 'Expected Trainees',
-                data: [115, 105, 90, 110, 140, 55, 120, 105, 115, 135],
-                backgroundColor: 'rgba(0, 119, 182, 0.7)',
-                borderColor: 'rgba(0, 119, 182, 1)',
-                borderWidth: 1,
-                borderRadius: 5,
-                barPercentage: 0.6
-            }]
-        };
-
-        // Config for the Monthly Trainees Chart
-        const monthlyTraineesConfig = {
+        // Monthly Trainee Distribution Chart (Updated to match pipeline)
+        const monthlyTraineesCtx = document.getElementById('monthlyTraineesChart').getContext('2d');
+        const monthlyTraineesChart = new Chart(monthlyTraineesCtx, {
             type: 'bar',
-            data: monthlyTraineesData,
+            data: {
+                labels: [
+                    'July 2025', 'August 2025', 'September 2025',
+                    'October 2025', 'November 2025', 'December 2025',
+                    'January 2026', 'February 2026', 'March 2026', 'April 2026'
+                ],
+                datasets: [{
+                    label: 'Projected Trainees',
+                    // Data pulled directly from your timeline notes
+                    data: [115, 105, 90, 110, 195, 120, 105, 115, 135, 0], // April is 0 for new trainees, focus on wrap-up
+                    backgroundColor: [
+                        '#0077B6', '#0077B6', '#0077B6', // Blue for core training months
+                        '#FF8C00', '#FF8C00', // Orange for new launch emphasis
+                        '#0077B6', '#0077B6', '#0077B6', '#0077B6', '#A8DADC' // Back to blue, April different for wrap-up
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        display: false,
+                        display: false // No need for legend as there's only one dataset
                     },
                     title: {
                         display: true,
-                        text: 'Expected Number of Trainees Per Month'
+                        text: 'Monthly Trainee Distribution (FY26 Pipeline)',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        color: '#333'
                     },
                     tooltip: {
                         callbacks: {
-                            title: function(tooltipItems) {
-                                // Use the custom formatLabel for tooltip titles if needed
-                                const item = tooltipItems[0];
-                                let label = item.chart.data.labels[item.dataIndex];
-                                return Array.isArray(label) ? label.join(' ') : label;
-                            },
-                            label: function(context) {
-                                let label = context.dataset.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                label += context.parsed.y + ' persons';
-                                return label;
+                            label: function (context) {
+                                return context.dataset.label + ': ' + context.parsed.y + ' trainees';
                             }
                         }
                     }
                 },
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Number of Trainees'
+                    x: {
+                        ticks: {
+                            color: '#555',
+                            font: {
+                                size: 12
+                            },
+                            callback: function (value, index, values) {
+                                return formatLabel(this.getLabelForValue(value), 10); // Adjust maxwidth as needed
+                            }
+                        },
+                        grid: {
+                            display: false
                         }
                     },
-                    x: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#555',
+                            font: {
+                                size: 12
+                            }
+                        },
+                        grid: {
+                            color: '#f0f0f0'
+                        },
                         title: {
                             display: true,
-                            text: 'Month'
+                            text: 'Number of Trainees',
+                            color: '#333',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
                         }
                     }
                 }
-            },
-        };
-
-        // Render the monthly trainees chart
-        var monthlyTraineesChartCtx = document.getElementById('monthlyTraineesChart').getContext('2d');
-        new Chart(monthlyTraineesChartCtx, monthlyTraineesConfig);
+            }
+        });
     </script>
-
 </body>
-</html>
 
-<!-- Sources: -->
-<!-- 1. https://github.com/iroblesrazzaq/mathematical-expression-evaluator -->
-<!-- 2. https://github.com/chardrreyes/laravel-package-manager -->
-<!-- 3. https://github.com/ambroisealten/POC_PDF -->
-<!-- 4. https://github.com/EduBernardo/our-finances -->
+</html>
